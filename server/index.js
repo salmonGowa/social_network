@@ -8,6 +8,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
+import {register} from "./controllers/auth.js";
 
 /*configurations*/
 
@@ -25,7 +26,7 @@ app.use(cors());
 app.use("/assets", express.static(path.join(__dirname, 'public/static')));
 
 /*file storage*/
-const __storage=multer.diskStorage({
+const storage=multer.diskStorage({
     destination:function(req, file, cb){
         cb(null, "public/assets");
     },
@@ -35,6 +36,8 @@ const __storage=multer.diskStorage({
 });
 
 const upload = multer({storage});
+/*routes with files*/
+app.post("/auth/register", upload.single("picture"), register);
 
 /*mongoose setuo*/
 const PORT= process.env.PORT || 6001;
