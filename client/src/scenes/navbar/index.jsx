@@ -56,7 +56,7 @@ const Navbar = () => {
             },
           }}
         >
-          Sociopedia
+          Night Shade
         </Typography>
         {isNonMobileScreens && (
           <FlexBetween
